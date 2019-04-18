@@ -1,0 +1,70 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Cars</a>
+</nav>
+
+<br>
+    <select #manufacturer (change)="populateCarNames(manufacturer.value)">
+        <option value="">Select Manufacturer</option>
+        <option 
+        *ngFor="let manufacturer of manufacturers" 
+        [value]="manufacturer"
+        >{{ manufacturer }}</option>
+    </select>
+
+    <br><br>
+
+    <select #carname (change)="populateModels(carname.value)" *ngIf="manufacturer.value">
+        <option value="">Select Car Name</option>
+        <option 
+        *ngFor="let carname of carNames" 
+        [value]="carname"
+        >{{ carname }}</option>
+    </select>
+
+    <br><br>
+
+    <select #model *ngIf="manufacturer.value" (click)="fetchCarDetails(model.value)">
+            <option value="">Select Model</option>
+            <option 
+            *ngFor="let model of carModels" 
+            [value]="model"
+            >{{ model }}</option>
+    </select>
+
+<br><br>
+
+    <button *ngIf="manufacturer.value" (click)="ShowCarDetails()">Get Details</button>
+
+<br>
+<br>
+
+    <table *ngIf="showCar">
+        <tr>
+            <td><label for="name">Car Name: </label></td>
+            <td><input type="text" id="name" [value]="carDetails.name"></td>
+        </tr>
+        <tr>
+            <td><label for="model">Model: </label></td>
+            <td><input type="text" id="model" [value]="carDetails.model"></td>
+        </tr>
+        <tr>
+            <td><label for="manufacturer">Manufacturer</label></td>
+            <td><input type="text" id="manufacturer" [value]="carDetails.manufacturer"></td>
+        </tr>
+        <tr>
+            <td><label for="price">Price</label></td>
+            <td><input type="text" id="price" [value]="carDetails.price"></td>
+        </tr>
+        <tr>
+            <td><label for="category">Category</label></td>
+            <td><input type="text" id="category" [value]="carDetails.category"></td>
+        </tr>
+        <tr>
+            <td><label for="engine">Engine</label></td>
+            <td><input type="text" id="engine" [value]="carDetails.engine"></td>
+        </tr>
+    </table>    
+
+
+<!-- <router-outlet></router-outlet> -->
